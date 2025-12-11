@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>XO Dots and Boxes | Arcade Edition</title>
+    
+    <!-- Social Sharing / Open Graph -->
+    <meta property="og:title" content="XO Dots & Boxes Arcade" />
+    <meta property="og:description" content="Challenge friends to this cyberpunk arcade strategy game. Connect dots, capture boxes, and trigger AI trash talk!" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#000000" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&family=Orbitron:wght@400;700;900&family=Jungle+Adventurer&display=swap" rel="stylesheet">
+    <style>
+      /* Custom font classes */
+      .font-arcade { font-family: 'Press Start 2P', cursive; }
+      .font-cyber { font-family: 'Orbitron', sans-serif; }
+      .font-standard { font-family: 'Roboto', sans-serif; }
+      
+      /* Deep Black Arcade Background Grid */
+      .bg-grid-pattern {
+        background-color: #000;
+        background-image: 
+          linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: grid-scroll 20s linear infinite;
+      }
+
+      @keyframes grid-scroll {
+        0% { background-position: 0 0; }
+        100% { background-position: 40px 40px; }
+      }
+
+      /* Neon Pulse */
+      @keyframes neon-pulse {
+        0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff; }
+        50% { text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px #0ff, 0 0 15px #0ff, 0 0 20px #0ff; }
+      }
+      .animate-neon { animation: neon-pulse 1.5s infinite alternate; }
+
+      /* Line Pop-in Animation (Clicked Confirmation) */
+      @keyframes pop-in {
+        0% { transform: scale(0); opacity: 0; }
+        60% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .animate-pop-in { 
+        transform-origin: center;
+        animation: pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+      }
+
+      /* Glitch Effect */
+      .glitch {
+        position: relative;
+      }
+      .glitch::before, .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+      }
+      .glitch::before {
+        left: 2px;
+        text-shadow: -1px 0 #ff00de;
+        clip: rect(24px, 550px, 90px, 0);
+        animation: glitch-anim-2 3s infinite linear alternate-reverse;
+      }
+      .glitch::after {
+        left: -2px;
+        text-shadow: -1px 0 #00ffff;
+        clip: rect(85px, 550px, 140px, 0);
+        animation: glitch-anim 2.5s infinite linear alternate-reverse;
+      }
+      @keyframes glitch-anim {
+        0% { clip: rect(10px, 9999px, 30px, 0); }
+        20% { clip: rect(80px, 9999px, 100px, 0); }
+        40% { clip: rect(20px, 9999px, 60px, 0); }
+        60% { clip: rect(90px, 9999px, 110px, 0); }
+        80% { clip: rect(5px, 9999px, 40px, 0); }
+        100% { clip: rect(50px, 9999px, 70px, 0); }
+      }
+      @keyframes glitch-anim-2 {
+        0% { clip: rect(90px, 9999px, 100px, 0); }
+        20% { clip: rect(10px, 9999px, 30px, 0); }
+        40% { clip: rect(50px, 9999px, 90px, 0); }
+        60% { clip: rect(10px, 9999px, 50px, 0); }
+        80% { clip: rect(70px, 9999px, 90px, 0); }
+        100% { clip: rect(20px, 9999px, 60px, 0); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.1/",
+    "react": "https://esm.sh/react@^19.2.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.560.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "peerjs": "https://esm.sh/peerjs@1.5.4?bundle-deps",
+    "jszip": "https://esm.sh/jszip@3.10.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-black text-white">
+    <div id="root"></div>
+  </body>
+</html>
